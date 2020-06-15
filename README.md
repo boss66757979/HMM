@@ -1,4 +1,4 @@
-#HMM天气预测小程序
+#HMM Weather Predict
 **Usage:**
 -
 **1. Copy training data into train window, like this:**
