@@ -1,7 +1,14 @@
 HMM Weather Predict
 ===
-**Usage:**
--
+<br>
+<br>
+<br>
+<br>
+<br>
+
+---
+Usage:
+---
 **1. Install the software:**
 -
 ![Image text](img_set/install.png)<br>
@@ -55,7 +62,13 @@ Code Structure:
 **newUI.py:** all QT UI structure and functions<br>
 
 **mainwindow.py:** entrance for UI and QT<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
+---
 File & Dir Structure:
 ---
 **img_set:** dir for train & test & readme images <br>
