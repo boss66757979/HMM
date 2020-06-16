@@ -127,7 +127,7 @@ class Ui_Frame(object):
         self.plainTextEdit.appendPlainText("Source Observer Data:\n")
         self.plainTextEdit.appendPlainText(" ".join([self.back_h_dict[num] for num in self.src_O[60:65]]))
         self.plainTextEdit.appendPlainText(" ".join([self.back_h_dict[num] for num in self.src_O[65:70]]))
-        self.plainTextEdit.appendPlainText("Predict Observer Data:\n")
+        self.plainTextEdit.appendPlainText("\nPredict Observer Data:\n")
         self.plainTextEdit.appendPlainText(" ".join([self.back_h_dict[num] for num in self.pred_O[60:65]]))
         self.plainTextEdit.appendPlainText(" ".join([self.back_h_dict[num] for num in self.pred_O[65:70]]))
         self.plainTextEdit.appendPlainText("Total Accuracy:")
