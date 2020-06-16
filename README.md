@@ -1,5 +1,7 @@
 HMM Weather Predict
 ===
+because of the DNS problem, someone can not see pictures blow. if so, please clone or download source code and open it in pycharm or IDE support Markdown
+---
 <br>
 <br>
 <br>
