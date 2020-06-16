@@ -206,6 +206,29 @@ class HMM(object):
         # print(last_O, O_nt)
         return O_nt
 
+
+    def predict_all(self, all_O):
+        pred_o = [all_O[0]]
+        for o in all_O:
+            pred_o.append(self.predict(o))
+        return pred_o
+
+    def find_map(self, new, src, length):
+        map_list = [i for i in range(9)]
+        for i in range(length):
+            counter_buf = 0
+            for j in range(length):
+                counter = 0
+                for k in range(len(src)):
+                    if(new[k] == i and src[k] == j):
+                        counter += 1
+                print(counter)
+                if counter > counter_buf:
+                    map_list[i] = j
+                    counter_buf = counter
+        print(map_list)
+        return [map_list[i] for i in new]
+
 def weather_data_gene(src_text=None, src_path=None):
     if src_text is not None:
         fp = src_text.split("\n")
@@ -257,7 +280,7 @@ def predict(A, B, Pi, last_O):
     return O_nt
 
 def find_map(new, src, length):
-    map_list = [0] * 9
+    map_list = [i for i in range(9)]
     for i in range(length):
         counter_buf = 0
         for j in range(length):
@@ -268,7 +291,7 @@ def find_map(new, src, length):
             if counter > counter_buf:
                 map_list[i] = j
                 counter_buf = counter
-    print(map_list)
+    # print(map_list)
     return [map_list[i] for i in new]
 
 def plot_line(A, B, Pi, O, epoch):
