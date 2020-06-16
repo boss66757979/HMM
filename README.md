@@ -31,6 +31,7 @@ HMM Weather Predict
 <br>
 <br>
 
+---
 Code Structure:
 ---
 **1. Model Segment:**<br>
