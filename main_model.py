@@ -199,19 +199,19 @@ class HMM(object):
 
         self.A, self.B, self.Pi = BaumWelchAlgo_n(A, B, Pi, O, epochs)   # EM算法对模型参数优化
 
-        for ind, hi in enumerate(self.A):
-            print(ind,end="\t")
-            for num in hi:
-                print("%.2f"%(num),end="\t")
-            print()
-        # for tag in h_dict.keys():
-        #     print("{:>10}".format(tag), end="\t")
-        # print()
-        for ind, hi in enumerate(self.B):
-            print(ind,end="\t")
-            for num in hi:
-                print("{:>10}".format("%.2f"%(num)),end="\t")
-            print()
+        # for ind, hi in enumerate(self.A):
+        #     print(ind,end="\t")
+        #     for num in hi:
+        #         print("%.2f"%(num),end="\t")
+        #     print()
+        # # for tag in h_dict.keys():
+        # #     print("{:>10}".format(tag), end="\t")
+        # # print()
+        # for ind, hi in enumerate(self.B):
+        #     print(ind,end="\t")
+        #     for num in hi:
+        #         print("{:>10}".format("%.2f"%(num)),end="\t")
+        #     print()
         return self.A, self.B, self.Pi
 
     def predict(self, last_O):
@@ -244,11 +244,10 @@ class HMM(object):
                 for k in range(len(src)):
                     if(new[k] == i and src[k] == j):
                         counter += 1
-                print(counter)
                 if counter > counter_buf:
                     map_list[i] = j
                     counter_buf = counter
-        print(map_list)
+        # print(map_list)
         return [map_list[i] for i in new]
 
 def weather_data_gene(src_text=None, src_path=None):

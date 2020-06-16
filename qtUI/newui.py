@@ -33,6 +33,9 @@ class Ui_Frame(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.resize(563, 500)
+        self.pushButton_3 = QtWidgets.QPushButton(Frame)
+        self.pushButton_3.setGeometry(QtCore.QRect(450, 120, 80, 26))
+        self.pushButton_3.setObjectName("pushButton_3")
         self.pushButton_2 = QtWidgets.QPushButton(Frame)
         self.pushButton_2.setGeometry(QtCore.QRect(450, 70, 80, 26))
         self.pushButton_2.setObjectName("pushButton_2")
@@ -76,14 +79,16 @@ class Ui_Frame(object):
     def retranslateUi(self, Frame):
         _translate = QtCore.QCoreApplication.translate
         Frame.setWindowTitle(_translate("Frame", "Frame"))
+        self.pushButton_3.setText(_translate("Frame", "Test"))
         self.pushButton_2.setText(_translate("Frame", "Predict"))
         self.pushButton.setText(_translate("Frame", "Train"))
         self.pushButton.clicked.connect(self.train_clicked)
         self.pushButton_2.clicked.connect(self.pred_clicked)
+        self.pushButton_3.clicked.connect(self.test_clicked)
         self.label.setText(_translate("Frame", "Current  Weather"))
         self.label_2.setText(_translate("Frame", "Future  Weather"))
         self.label_3.setText(_translate("Frame", "Training Epochs"))
-        self.lineEdit_3.setText("50")
+        self.lineEdit_3.setText("10")
 
     def train_clicked(self):
         from main_model import HMM, weather_data_gene
@@ -93,21 +98,41 @@ class Ui_Frame(object):
         self.plainTextEdit.setPlainText("Training Model, Please wait a minute...")
         epoch = int(self.lineEdit_3.text())
         self.O, self.A, self.B, self.Pi, self.h_dict, self.o_len, self.h_len = weather_data_gene(src_text=self.get_text)
+        self.back_h_dict = {}
+        for k, v in self.h_dict.items():
+            self.back_h_dict[v] = k
         self.model = HMM()
         self.A, self.B, self.Pi = self.model.Learning(self.O, self.A, self.B, self.Pi, self.h_dict, epoch)
         self.plainTextEdit.appendPlainText("Training Model Finished")
+        self.plainTextEdit.appendPlainText("State Transition Matrix A:")
+        self.plainTextEdit.appendPlainText("\t\tHidden State")
+        for ind, hi in enumerate(self.A):
+            text_line = "State " + str(ind) + "\t"
+            for num in hi:
+                text_line += str(num)[:4] + "  "
+            self.plainTextEdit.appendPlainText(text_line)
+        self.plainTextEdit.appendPlainText("Emission Matrix B:")
+        self.plainTextEdit.appendPlainText("\t\tHidden State")
+        for ind, hi in enumerate(self.B):
+            text_line = self.back_h_dict[ind][:13] + "\t"
+            for num in hi:
+                text_line += str(num)[:4] + "  "
+            self.plainTextEdit.appendPlainText(text_line)
+
+    def test_clicked(self):
         self.src_O = self.O[0]
         self.pred_O = self.model.predict_all(self.src_O)
         self.pred_O = self.model.find_map(self.pred_O, self.src_O, 9)
-        self.plainTextEdit.appendPlainText("Test Model:")
-        self.plainTextEdit.appendPlainText("Source Observer Data:")
-        self.plainTextEdit.appendPlainText(" ".join([str(num) for num in self.src_O[40:80]]))
-        self.plainTextEdit.appendPlainText("Predict Observer Data:")
-        self.plainTextEdit.appendPlainText(" ".join([str(num) for num in self.pred_O[40:80]]))
+        self.plainTextEdit.appendPlainText("Test Model:\n")
+        self.plainTextEdit.appendPlainText("Source Observer Data:\n")
+        self.plainTextEdit.appendPlainText(" ".join([self.back_h_dict[num] for num in self.src_O[60:65]]))
+        self.plainTextEdit.appendPlainText(" ".join([self.back_h_dict[num] for num in self.src_O[65:70]]))
+        self.plainTextEdit.appendPlainText("Predict Observer Data:\n")
+        self.plainTextEdit.appendPlainText(" ".join([self.back_h_dict[num] for num in self.pred_O[60:65]]))
+        self.plainTextEdit.appendPlainText(" ".join([self.back_h_dict[num] for num in self.pred_O[65:70]]))
         self.plainTextEdit.appendPlainText("Total Accuracy:")
         total_equal = sum([(1 if self.src_O[i] == self.pred_O[i] else 0) for i in range(len(self.src_O))])
         self.plainTextEdit.appendPlainText(str(100 * total_equal/len(self.src_O)) + "%")
-
 
     def pred_clicked(self):
         get_text = self.comboBox.currentText()

@@ -23,13 +23,17 @@ Usage:
 -
 ![Image text](img_set/copydatas.png)<br>
 -
-**4. Click Train button to training model, try different training epoch to find best acc**
+**4. Click Train button to training model and get the params Matrix**
 -
-![Image text](img_set/epoch-50-train.png)![Image text](img_set/epoch-60-train.png)<br>
+![Image text](img_set/trainfinish.png)<br>
 -
-**5. Choose a weather like Rain, then press Predict Button, then:**
+**5. Click Test button to test model, try different training epoch to find best acc**
 -
-![Image text](img_set/Predict.png)<br>
+![Image text](img_set/epoch-10-train.png)<br>
+-
+**6. Choose a weather like Rain, then press Predict Button, then:**
+-
+![Image text](img_set/predict.png)<br>
 -
 **The Future weather comes out ^_^**
 -
