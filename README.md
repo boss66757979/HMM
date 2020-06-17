@@ -1,6 +1,11 @@
 HMM Weather Predict
 ===
 because of the DNS problem, someone can not see pictures blow. if so, please clone or download source code and open it in pycharm or IDE support Markdown
+
+the require packages could be seen in requirements.txt, just use : 
+---
+    pip install -r requirements.txt 
+to install the require packages
 ---
 <br>
 <br>

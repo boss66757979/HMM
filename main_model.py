@@ -228,7 +228,6 @@ class HMM(object):
         # print(last_O, O_nt)
         return O_nt
 
-
     def predict_all(self, all_O):
         pred_o = [all_O[0]]
         for o in all_O:
