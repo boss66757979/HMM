@@ -10,8 +10,6 @@ to install the require packages
 <br>
 <br>
 <br>
-<br>
-<br>
 
 ---
 Usage:
@@ -36,15 +34,12 @@ Usage:
 -
 ![Image text](img_set/epoch-10-train.png)<br>
 -
-**6. Choose a weather like Rain, then press Predict Button, then:**
+**6. There are total 9 kinds of weather, choose a weather like Rain, then press Predict Button, then:**
 -
 ![Image text](img_set/predict.png)<br>
 -
 **The Future weather comes out ^_^**
 -
-<br>
-<br>
-<br>
 <br>
 <br>
 <br>
@@ -73,8 +68,6 @@ Code Structure:
 **newUI.py:** all QT UI structure and functions<br>
 
 **mainwindow.py:** entrance for UI and QT<br>
-<br>
-<br>
 <br>
 <br>
 <br>
